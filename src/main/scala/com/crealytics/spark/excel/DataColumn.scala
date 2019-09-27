@@ -37,6 +37,7 @@ class HeaderDataColumn(
             case CellType.STRING => Option(cell.getRichStringCellValue).map(_.getString)
             case CellType.NUMERIC => Option(cell.getNumericCellValue).map(_.toString)
             case CellType.BLANK => None
+            case CellType.ERROR => Option(cell.getStringCellValue.split("  ")(1))
             case _ => Some(dataFormatter.formatCellValue(cell))
           }
         case CellType.BLANK => None
